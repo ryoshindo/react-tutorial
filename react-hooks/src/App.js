@@ -1,24 +1,18 @@
-import React, { createContext, useState } from "react";
-import "./App.css";
-import Context from "./components/ContextSample/ContextA";
-import Counter from "./counter";
-
-export const UserContext = createContext()
-export const HobbyContext = createContext()
+import React, { useRef } from "react";
 
 const App = () => {
-  const [user, setUser] = useState({
-    name: "セイラ",
-    age: "17",
-  })
-
-  const [hobby, setHobby] = useState("キャンプ")
+  const inputEl = useRef(null);
+  const handleClick = () => {
+    inputEl.current.focus();
+    console.log("inputEl.current:", inputEl.current);
+  };
 
   return (
-    <div className="App">
-      <Counter />
-    </div>
-  )
-}
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={handleClick}>入力エリアをフォーカスする</button>
+    </>
+  );
+};
 
 export default App
