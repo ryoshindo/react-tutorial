@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import "./App.css";
 import Context from "./components/ContextSample/ContextA";
+import Counter from "./counter";
 
 export const UserContext = createContext()
 export const HobbyContext = createContext()
@@ -15,11 +16,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <UserContext.Provider value={user}>
-        <HobbyContext.Provider value={hobby}>
-          <Context />
-        </HobbyContext.Provider>
-      </UserContext.Provider>
+      <Counter />
     </div>
   )
 }
