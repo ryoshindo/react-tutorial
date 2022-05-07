@@ -1,31 +1,31 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
-const Title = () => {
+const Title = React.memo(() => {
     console.log("Title Component")
 
     return (
         <h2>useCallBack Test vol.1</h2>
     )
-}
+})
 
-const Button = ({ handleClick, value }) => {
+const Button = React.memo(({ handleClick, value }) => {
     console.log("Button child component", value)
 
     return <button type="button" onClick={handleClick}>{value}</button>
-}
+})
 
-const Count = ({ text, countState }) => {
+const Count = React.memo(({ text, countState }) => {
     console.log("Count child component", text)
 
     return <p>{text}:{countState}</p>
-}
+})
 
 const Counter = () => {
     const [firstCountState, setFirstCountState] = useState(0)
     const [secondCountState, setSecondCountState] = useState(10)
 
-    const incrementFirstCounter = () => setFirstCountState(firstCountState + 1)
-    const incrementSecondCounter = () => setSecondCountState(secondCountState + 10)
+    const incrementFirstCounter = useCallback(() => setFirstCountState(firstCountState + 1), [firstCountState])
+    const incrementSecondCounter = useCallback(() => setSecondCountState(secondCountState + 10), [secondCountState])
 
     return (
         <>
