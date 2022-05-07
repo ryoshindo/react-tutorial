@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from "react";
+import "./App.css";
+import Context from "./components/ContextSample/ContextA";
 
-function App() {
+export const UserContext = createContext()
+export const HobbyContext = createContext()
+
+const App = () => {
+  const [user, setUser] = useState({
+    name: "セイラ",
+    age: "17",
+  })
+
+  const [hobby, setHobby] = useState("キャンプ")
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserContext.Provider value={user}>
+        <HobbyContext.Provider value={hobby}>
+          <Context />
+        </HobbyContext.Provider>
+      </UserContext.Provider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
